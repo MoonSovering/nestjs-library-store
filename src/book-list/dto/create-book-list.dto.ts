@@ -16,8 +16,7 @@ export class CreateBookListDto {
     @IsNotEmpty()
     readonly categories: [string];
 
-    @IsString()
-    @IsNotEmpty()
-    readonly image: string;
+
+    image: Express.Multer.File
 
 }

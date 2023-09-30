@@ -9,7 +9,7 @@ export class CloudinaryController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  uploadFile( @UploadedFile(
+  async uploadFile( @UploadedFile(
     new ParseFilePipe({
       validators: [
         new FileTypeValidator({ fileType: '.(png|jpeg|jpg)' }),
@@ -17,7 +17,9 @@ export class CloudinaryController {
     })
   ) file: Express.Multer.File ) {
     
-    return this.cloudinaryService.uploadFile(file);
+    const { secure_url } = await this.cloudinaryService.uploadFile(file);
+
+    return secure_url
 
   }
 

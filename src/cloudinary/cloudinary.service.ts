@@ -21,10 +21,8 @@ export class CloudinaryService {
       streamifier.createReadStream( file.buffer ).pipe( upload )
 
     })
-
   
-  
-    return uploadFile.secure_url;
+    return uploadFile;
   }
 
 }
