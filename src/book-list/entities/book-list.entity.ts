@@ -12,7 +12,6 @@ export class BookList {
 
     @Prop({
         required: true,
-        unique: true,
         trim: true,
         lowercase: true,
     })
