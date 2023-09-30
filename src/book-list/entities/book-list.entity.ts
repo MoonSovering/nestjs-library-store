@@ -1,7 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-
-
 @Schema()
 export class BookList {
 
@@ -31,7 +29,7 @@ export class BookList {
         required: true,
         unique: true,
     })
-    image: string; 
+    image: string;
 
 }
 

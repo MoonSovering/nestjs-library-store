@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 import { BookListModule } from './book-list/book-list.module';
-import { UploadModule } from './upload/upload.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
     BookListModule,
     MongooseModule.forRoot('mongodb://localhost:27017/book-store'),
-    UploadModule,
+    CloudinaryModule,
+    ConfigModule.forRoot({ isGlobal: true })
     
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {} 
