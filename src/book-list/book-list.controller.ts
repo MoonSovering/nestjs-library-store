@@ -5,6 +5,7 @@ import { BookListService } from './book-list.service';
 import { CreateBookListDto } from './dto/create-book-list.dto';
 import { UpdateBookListDto } from './dto/update-book-list.dto';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
 
 @Controller('booklist')
 export class BookListController {
@@ -33,13 +34,13 @@ export class BookListController {
   }
 
   @Get()
-  findAll() {
-    return this.bookListService.findAll();
+  findAllBooks() {
+    return this.bookListService.findAllBooks();
   }
 
   @Get(':term')
-  findOne(@Param('term') term: string) {
-    return this.bookListService.findOne(term);
+  findBookById(@Param('term', ParseMongoIdPipe) term: string) {
+    return this.bookListService.findBookById(term);
   }
 
   @Patch(':term')
@@ -47,8 +48,8 @@ export class BookListController {
     return this.bookListService.update(term, updateBookListDto);
   }
 
-  @Delete(':term')
-  remove(@Param('term') term: string) {
-    return this.bookListService.remove(term);
+  @Delete(':id')
+  remove(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.bookListService.removeBook(id);
   }
 }

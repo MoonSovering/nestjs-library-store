@@ -14,6 +14,10 @@ export class CreateBookListDto {
 
     @IsString()
     @IsNotEmpty()
+    readonly description: string;
+
+    @IsString()
+    @IsNotEmpty()
     readonly categories: [string];
 
 

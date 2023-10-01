@@ -7,6 +7,7 @@ export class BookList {
         required: true,
         trim: true,
         lowercase: true,
+        unique: true,
     })
     title: string;
 
@@ -16,6 +17,12 @@ export class BookList {
         lowercase: true,
     })
     author: string;
+
+    @Prop({
+        required: true,
+        trim: true,
+    })
+    description: string;
 
     @Prop({
         required: true,

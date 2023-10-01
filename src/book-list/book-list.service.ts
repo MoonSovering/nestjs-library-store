@@ -29,23 +29,18 @@ export class BookListService {
 
   }
 
-  async findAll() {
+  async findAllBooks() {
 
     const books = await this.bookModel.find()
 
     return books;
   }
 
-  async findOne(term: string) {
+  async findBookById(term: string) {
 
-    const book = await this.bookModel.findOne({
-      $or: [
-        {title: term},
-        {author: term},
-      ]
-    });
+    const book = await this.bookModel.findById(term);
 
-    if(book === null) throw new BadRequestException(`Author or book ${ term } can't be found`);
+    if(!book) throw new BadRequestException(`Author or book ${ term } can't be found`);
     
 
     return book;
@@ -55,7 +50,15 @@ export class BookListService {
     return `This action updates a #${term} bookList`;
   }
 
-  remove(term: string) {
-    return 
+  async removeBook(id: string) {
+
+    // const result = await this.bookModel.findByIdAndDelete( id );
+
+    const { deletedCount } = await this.bookModel.deleteOne({ _id: id });
+
+    if( deletedCount === 0 ) throw new BadRequestException(`Book with ID ${id} can't be found`)
+
+
+    return 'Book have been delete succesfully';
   }
 }
