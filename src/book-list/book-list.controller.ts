@@ -44,12 +44,23 @@ export class BookListController {
   }
 
   @Patch(':term')
-  update(@Param('term') term: string, @Body() updateBookListDto: UpdateBookListDto) {
-    return this.bookListService.update(term, updateBookListDto);
+  @UseInterceptors(FileInterceptor('image'))
+  async updateBook(
+    @Param('term', ParseMongoIdPipe) term: string,
+    @Body() updateBookListDto: UpdateBookListDto,
+    @UploadedFile( new ParseFilePipe({ validators: [
+      new FileTypeValidator({ fileType: '.(png|jpg|jpeg)' })
+    ] }) ) file: Express.Multer.File
+    ) {
+
+      const { secure_url } = await this.cloudinaryService.uploadFile(file);
+      updateBookListDto.image = secure_url;
+
+    return this.bookListService.updateBook(term, updateBookListDto);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseMongoIdPipe) id: string) {
+  removeBook(@Param('id', ParseMongoIdPipe) id: string) {
     return this.bookListService.removeBook(id);
   }
 }

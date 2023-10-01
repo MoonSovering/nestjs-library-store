@@ -33,6 +33,8 @@ export class BookListService {
 
     const books = await this.bookModel.find()
 
+    if(books.length === 0) throw new BadRequestException(`Book list its empty, please insert one book if you want to see the list`);
+
     return books;
   }
 
@@ -46,13 +48,18 @@ export class BookListService {
     return book;
   }
 
-  update(term: string, updateBookListDto: UpdateBookListDto) {
-    return `This action updates a #${term} bookList`;
+  async updateBook(term: string, updateBookListDto: UpdateBookListDto) {
+
+    const newBook = await this.bookModel.findByIdAndUpdate(
+      term, 
+      updateBookListDto,
+      {new: true}
+      );
+
+    return newBook;
   }
 
   async removeBook(id: string) {
-
-    // const result = await this.bookModel.findByIdAndDelete( id );
 
     const { deletedCount } = await this.bookModel.deleteOne({ _id: id });
 
