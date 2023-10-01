@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, ParseFilePipe, FileTypeValidator } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, ParseFilePipe, FileTypeValidator, Query } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 import { BookListService } from './book-list.service';
-import { CreateBookListDto } from './dto/create-book-list.dto';
-import { UpdateBookListDto } from './dto/update-book-list.dto';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
+import { CreateBookListDto, UpdateBookListDto } from './dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
 
 @Controller('booklist')
@@ -34,8 +34,9 @@ export class BookListController {
   }
 
   @Get()
-  findAllBooks() {
-    return this.bookListService.findAllBooks();
+  findAllBooks( @Query() paginationDto: PaginationDto ) {
+
+    return this.bookListService.findAllBooks(paginationDto);
   }
 
   @Get(':term')

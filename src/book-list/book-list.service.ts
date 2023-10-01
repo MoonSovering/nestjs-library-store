@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateBookListDto } from './dto/create-book-list.dto';
 import { UpdateBookListDto } from './dto/update-book-list.dto';
 import { BookList } from './entities/book-list.entity';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class BookListService {
@@ -29,9 +30,14 @@ export class BookListService {
 
   }
 
-  async findAllBooks() {
+  async findAllBooks( paginationDto: PaginationDto) {
+
+    const { limit = 10, offset= 0 } = paginationDto;
 
     const books = await this.bookModel.find()
+      .limit(limit)
+      .skip(offset)
+      .select('-__v');
 
     if(books.length === 0) throw new BadRequestException(`Book list its empty, please insert one book if you want to see the list`);
 
@@ -55,6 +61,8 @@ export class BookListService {
       updateBookListDto,
       {new: true}
       );
+
+    if(!newBook) throw new BadRequestException(`Book with ID ${term} not found`);
 
     return newBook;
   }

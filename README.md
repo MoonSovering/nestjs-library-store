@@ -1,14 +1,34 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
-## Description
+<p align="center">
+  <a href="https://www.mongodb.com/en" target="blank"><img src="https://www.josebernalte.com/wp-content/uploads/2018/02/mongoDB.png" width="420" alt="MongoDB Logo" /></a>
+</p>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# Description
+An REST API with [Nest](https://github.com/nestjs/nest) and [Mongo](https://www.mongodb.com/es)
 
 ## Installation
 
+1. Clone repository
+2. Execute
+
 ```bash
 $ yarn install
+```
+
+3. Add NestCLI
+```bash
+$ yarn add -g @nestjs/cli
+```
+
+4. Clone file __.env.template__ and rename to __.env__
+
+5. Fill the missing fields of the __.env__ file
+
+6. Up database
+```bash
+docker-compse up -d
 ```
 
 ## Running the app
@@ -24,29 +44,16 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Armando Sanmartin]
+
+## Stack use
+* MongoDB
+* Nest
 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+

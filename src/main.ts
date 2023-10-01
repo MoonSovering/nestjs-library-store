@@ -9,11 +9,15 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true
+      }
       })
   )
 
   app.enableCors();
 
-  await app.listen(3000);
+  await app.listen( process.env.PORT );
 }
 bootstrap();
