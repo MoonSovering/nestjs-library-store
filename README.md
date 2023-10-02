@@ -8,6 +8,30 @@
 # Description
 An REST API with [Nest](https://github.com/nestjs/nest) and [Mongo](https://www.mongodb.com/es)
 
+## API
+
+Server is deploy in the following link https://library-production-68e8.up.railway.app and it expose the following APIs:
+
+
+- **GET** - `/booklist` Expose all books
+            `/booklist?limit=10&skip=1` (Optional query params)
+
+- **POST** - `/booklist` Create a new book
+  - **title** - *string*
+  - **author** - *string*
+  - **categories** - *string* ( Example: fantasy, action)
+  - **image** - *file*
+  - **description** - *string*
+
+- **GET** - `/booklist/${id}` Getting book by ID (MongoID)
+
+- **PATCH** - `booklist/${id}` Update book
+  - **title** - *string* (Optional)
+  - **author** - *string* (Optional)
+  - **categories** - *string* (Optional)
+  - **image** - *file*
+  - **description** - *string* (Optional)
+
 ## Installation
 
 1. Clone repository

@@ -53,7 +53,7 @@ export class BookListController {
       new FileTypeValidator({ fileType: '.(png|jpg|jpeg)' })
     ] }) ) file: Express.Multer.File
     ) {
-
+      
       const { secure_url } = await this.cloudinaryService.uploadFile(file);
       updateBookListDto.image = secure_url;
 

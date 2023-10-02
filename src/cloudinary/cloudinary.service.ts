@@ -25,12 +25,4 @@ export class CloudinaryService {
     return uploadFile;
   }
 
-  async deletedFile( imageId: string ){
-
-    const deletedImg = await cloudinary.uploader.destroy( imageId );
-
-    return deletedImg;
-
-  }
-
 }

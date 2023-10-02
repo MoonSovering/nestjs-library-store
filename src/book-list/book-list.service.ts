@@ -2,8 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable, BadRequestException, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { CreateBookListDto } from './dto/create-book-list.dto';
-import { UpdateBookListDto } from './dto/update-book-list.dto';
+import { CreateBookListDto, UpdateBookListDto } from './dto';
 import { BookList } from './entities/book-list.entity';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 
