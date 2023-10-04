@@ -10,7 +10,7 @@ An REST API with [Nest](https://github.com/nestjs/nest) and [Mongo](https://www.
 
 ## API
 
-Server is deploy in the following link https://library-production-68e8.up.railway.app/booklist and it expose the following APIs:
+The app is running on PORT:3000 and expose the following APIs:
 
 
 - **GET** - `/booklist` Expose all books
@@ -29,7 +29,7 @@ Server is deploy in the following link https://library-production-68e8.up.railwa
   - **title** - *string* (Optional)
   - **author** - *string* (Optional)
   - **categories** - *string* (Optional)
-  - **image** - *file*
+  - **image** - *file* (Optional)
   - **description** - *string* (Optional)
 
 ## Installation

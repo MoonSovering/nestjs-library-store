@@ -51,11 +51,13 @@ export class BookListController {
     @Body() updateBookListDto: UpdateBookListDto,
     @UploadedFile( new ParseFilePipe({ validators: [
       new FileTypeValidator({ fileType: '.(png|jpg|jpeg)' })
-    ] }) ) file: Express.Multer.File
+    ], fileIsRequired: false }) ) file: Express.Multer.File
     ) {
       
-      const { secure_url } = await this.cloudinaryService.uploadFile(file);
-      updateBookListDto.image = secure_url;
+      if( file ){
+        const { secure_url } = await this.cloudinaryService.uploadFile(file);
+        updateBookListDto.image = secure_url;
+      }
 
     return this.bookListService.updateBook(term, updateBookListDto);
   }
